@@ -1,10 +1,52 @@
-import React from 'react'
+import { useState, useEffect } from "react";
+import useEffectOnce from "../hooks/useEffectOnce";
+import {Splide, SplideSlide} from "@splidejs/react-splide";
+import FoodAPI from "../service/service";
 
-function Veggie() {
-  console.log("veggie")
+//styles
+import '@splidejs/splide/dist/css/splide.min.css';
+import {Wrapper, Card, Gradient} from './styled-components';
+
+const foodAPI = new FoodAPI();
+
+// main component
+const Veggie = () => {
+  const [veggie, setVeggie] = useState<any>([]);
+
+  useEffectOnce(() => {
+    foodAPI.getVeggie({number: 9})
+        .then(data => setVeggie(data))
+        .catch(error => console.log(error))
+  })
+
+  useEffect(() => {
+    console.log(veggie)
+  }, [veggie])
+
   return (
-    <div>Veggie</div>
+      <Wrapper>
+        <h3>Vegetarian Picks</h3>
+
+        <Splide options={{
+          perPage: 3,
+          arrows: false,
+          pagination: false,
+          drag: "free",
+          gap: "5rem"
+        }}>
+          {veggie.map(({id, title, image}: any) => {
+            return(
+                <SplideSlide key={id}>
+                  <Card>
+                    <p>{title}</p>
+                    <img src={image} alt={title}/>
+                    <Gradient/>
+                  </Card>
+                </SplideSlide>
+            )
+          })}
+        </Splide>
+      </Wrapper>
   )
 }
-
 export default Veggie;

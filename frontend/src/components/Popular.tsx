@@ -1,29 +1,53 @@
-import { memo, useState } from "react";
+import { useState, useEffect } from "react";
 import useEffectOnce from "../hooks/useEffectOnce";
+import {Splide, SplideSlide} from "@splidejs/react-splide";
 import FoodAPI from "../service/service";
+
+//styles
+import '@splidejs/splide/dist/css/splide.min.css';
+import {Wrapper, Card, Gradient} from './styled-components';
 
 const foodAPI = new FoodAPI();
 
-const Popular = memo(() => {
-  const [popular, setPopular] = useState([]);
+// main component
+const Popular = () => {
+  const [popular, setPopular] = useState<any>([]);
   
   useEffectOnce(() => {
-    foodAPI.getPopular({number: 9})
-      // .then(data => setPopular(data.recipes))
-      .catch(error => console.log(error))
+      foodAPI.getPopular({number: 9})
+          .then(data => setPopular(data))
+          .catch(error => console.log(error))
   })
 
+  useEffect(() => {
+    console.log(popular)
+  }, [popular])
+
   return (
-    <div>
-      {popular.map((recipe: any) => {
-        return (
-          <div key={recipe.id}>
-            <p>{recipe.title}</p>
-          </div>
-        )
-      })}
-    </div>
+    <Wrapper>
+      <h3>Popular Picks</h3>
+
+      <Splide options={{
+        perPage: 4,
+        arrows: false,
+        pagination: false,
+        drag: "free",
+        gap: "5rem"
+      }}>
+        {popular.map(({id, title, image}: any) => {
+          return(
+              <SplideSlide key={id}>
+                <Card>
+                  <p>{title}</p>
+                  <img src={image} alt={title}/>
+                  <Gradient/>
+                </Card>
+              </SplideSlide>
+          )
+        })}
+      </Splide>
+    </Wrapper>
   )
-})
+}
 
 export default Popular;
