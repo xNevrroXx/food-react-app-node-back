@@ -44,4 +44,18 @@ const Gradient = styled.div`
   background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
 `;
 
-export {Wrapper, Card, Gradient};
+const ListCategory = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  a {
+    text-decoration: none;
+    svg {
+      display: block;
+      margin: 0 auto;
+    } 
+  }
+`;
+
+export {Wrapper, Card, Gradient, ListCategory};
