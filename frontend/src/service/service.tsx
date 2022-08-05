@@ -46,7 +46,7 @@ class FoodAPI {
         }
     }
     #getByName = async(objParams: IObjParamsByName)=> {
-        const checkLocalStorage = localStorage.getItem(objParams.name);
+        const checkLocalStorage = localStorage.getItem(objParams.query);
 
         if(checkLocalStorage) {
             return JSON.parse(checkLocalStorage);
@@ -55,7 +55,7 @@ class FoodAPI {
             const api = await fetch(`${backendServer}/recipes/complexSearch?${FoodAPI.createStringParams(objParams)}`);
             const data = await api.json();
             console.log(data)
-            localStorage.setItem(objParams.name, JSON.stringify(data.results));
+            localStorage.setItem(objParams.query, JSON.stringify(data.results));
             return data.results;
         }
     }

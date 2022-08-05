@@ -7,14 +7,14 @@ import FoodAPI from "../service/service";
 import '@splidejs/splide/dist/css/splide.min.css';
 import {Wrapper, Card, Gradient} from './styled-components';
 
-const foodAPI = new FoodAPI();
+const {getVeggie} = new FoodAPI();
 
 // main component
 const Veggie = () => {
   const [veggie, setVeggie] = useState<any>([]);
 
   useEffectOnce(() => {
-    foodAPI.getVeggie({number: 9})
+    getVeggie({number: 9})
         .then(data => setVeggie(data))
         .catch(error => console.log(error))
   })
