@@ -24,7 +24,7 @@ function concatWithParams(startUrl, requireQuery) {
 const routes = (app) => {
     app.get("/recipes/random", (require, response) => {
         const params = require.query;
-        let url = `${urlApi}/recipes/random?apiKey=${apiKey}`; /*TODO here is deliberate mistake*/
+        let url = `${urlApi}/recipes/random?apiKey=${apiKey}`;
         url = concatWithParams(url, require.query);
         console.log("fetch: ", url)
         fetch(url)
@@ -32,17 +32,17 @@ const routes = (app) => {
             .then(text => response.send(text))
             .catch(error => response.status(error.status).send(error));
     })
-    //
-    // app.get("/recipes/veggie", (require, response) => {
-    //     const params = require.query;
-    //     let url = `${urlApi}/recipes/random?apiKey=${apiKey}`; /*TODO here is deliberate mistake*/
-    //     url = concatWithParams(url, require.query);
-    //     console.log("fetch: ", url)
-    //     fetch(url)
-    //         .then(responseAPI => responseAPI.text())
-    //         .then(text => response.send(text))
-    //         .catch(error => response.status(error.status).send(error));
-    // })
+
+    app.get("/recipes/complexSearch", (require, response) => {
+        const params = require.query;
+        let url = `${urlApi}/recipes/complexSearch?apiKey=${apiKey}`;
+        url = concatWithParams(url, require.query);
+        console.log("fetch: ", url)
+        fetch(url)
+            .then(responseAPI => responseAPI.text())
+            .then(text => response.send(text))
+            .catch(error => response.status(error.status).send(error));
+    })
 }
 
 module.exports = routes;
