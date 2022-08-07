@@ -18,11 +18,11 @@ const Cuisine = () => {
   }, [params.type])
 
     return (
-      <div>
+      <Wrapper>
         <Grid>
           {cuisine.map(({title, image, id}: any) => {
             return (
-              <Card>
+              <Card to={`/recipes/${id}`} key={id}>
                 <p>{title}</p>
                 <img src={image} alt={title}/>
                 <Gradient/>
@@ -30,7 +30,7 @@ const Cuisine = () => {
             )
           })}
         </Grid>
-      </div>
+      </Wrapper>
     );
 };
 

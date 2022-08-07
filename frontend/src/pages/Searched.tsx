@@ -21,7 +21,7 @@ const Searched = () => {
       <Grid>
         {recipes.map(({id, title, image}: any) => {
           return (
-            <Card key={id}>
+            <Card to={`/recipes/${id}`} key={id}>
               <p>{title}</p>
               <img src={image} alt={title}/>
               <Gradient/>

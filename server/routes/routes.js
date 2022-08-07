@@ -43,6 +43,16 @@ const routes = (app) => {
             .then(text => response.send(text))
             .catch(error => response.status(error.status).send(error));
     })
+
+    app.get("/recipe/:id", (require, response) => {
+        const id = require.params.id;
+        let url = `${urlApi}/recipes/${id}/information?apiKey=${apiKey}`;
+        console.log("fetch: ", url)
+        fetch(url)
+            .then(responseAPI => responseAPI.text())
+            .then(text => response.send(text))
+            .catch(error => response.status(error.status).send(error));
+    })
 }
 
 module.exports = routes;

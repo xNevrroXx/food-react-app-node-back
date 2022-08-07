@@ -7,5 +7,8 @@ interface IObjParamsCuisine extends IObjParams {
 interface IObjParamsByName extends IObjParams {
   query: string
 }
+interface IObjParamsById extends IObjParams {
+  id: string
+}
 
-export type {IObjParams, IObjParamsCuisine, IObjParamsByName};
+export type {IObjParams, IObjParamsCuisine, IObjParamsByName, IObjParamsById};

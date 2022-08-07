@@ -37,7 +37,7 @@ const Veggie = () => {
           {veggie.map(({id, title, image}: any) => {
             return(
                 <SplideSlide key={id}>
-                  <Card>
+                  <Card to={`/recipes/${id}`}>
                     <p>{title}</p>
                     <img src={image} alt={title}/>
                     <Gradient/>

@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   margin: 4rem 0rem;
 `;
 
-const Card = styled.div`
+const Card = styled(NavLink)`
   min-height: 25rem;
   border-radius: 2rem;
   overflow: hidden;
@@ -112,4 +112,43 @@ const Form = styled.form`
   }
 `;
 
-export {Wrapper, Card, Gradient, ListCategory, SLink, Grid, Form};
+const Recipe = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: start;
+  gap: 4rem;
+  img {
+    border-radius: 2rem;
+    object-fit: cover;
+  }
+  h4 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .wrapper-buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    button {
+      cursor: pointer;
+      display: block;
+      width: 8rem;
+      height: 2.5rem;
+      color: black;
+      background: transparent;
+      border: black .13rem solid;
+      &.active {
+        border: transparent 0.13rem solid;
+        border-image: linear-gradient( #f27121, #e94057) 1;
+        background: linear-gradient(#f27121, #e94057);
+        color: white;
+      }
+    }
+  }
+`;
+
+export {Wrapper, Card, Gradient, ListCategory, SLink, Grid, Form, Recipe};

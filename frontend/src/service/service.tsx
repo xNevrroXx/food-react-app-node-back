@@ -1,4 +1,4 @@
-import {IObjParams, IObjParamsByName, IObjParamsCuisine} from "../interfaces/interfaces";
+import {IObjParams, IObjParamsById, IObjParamsByName, IObjParamsCuisine} from "../interfaces/interfaces";
 
 
 const backendServer = "http://localhost:9999";
@@ -59,6 +59,20 @@ class FoodAPI {
             return data.results;
         }
     }
+    #getById = async(id: string)=> {
+        const checkLocalStorage = localStorage.getItem(id);
+
+        if(checkLocalStorage) {
+            return JSON.parse(checkLocalStorage);
+        }
+        else {
+            const api = await fetch(`${backendServer}/recipe/${id}`);
+            const data = await api.json();
+            console.log(data)
+            localStorage.setItem(id, JSON.stringify(data));
+            return data;
+        }
+    }
 
     // getters
     getPopular = (objParams: IObjParams) => {
@@ -72,6 +86,9 @@ class FoodAPI {
     }
     getByName = (objParams: IObjParamsByName) => {
         return this.#getByName(objParams);
+    }
+    getById = (id: string) => {
+        return this.#getById(id);
     }
 
     static createStringParams(objParams: IObjParams) {
