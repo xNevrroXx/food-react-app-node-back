@@ -1,6 +1,6 @@
 import {Recipe as RecipeStyle} from "../components/styled-components";
 import {useParams} from "react-router-dom";
-import {MouseEventHandler, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import FoodAPI from "../service/service";
 
 const {getById} = new FoodAPI();
@@ -17,7 +17,12 @@ const Recipe = () => {
   }, [params.id])
 
   return (
-    <RecipeStyle>
+    <RecipeStyle
+      animate={{opacity: 1}}
+      initial={{opacity: 0}}
+      exit={{opacity: 0}}
+      transition={{duration: 0.5}}
+    >
       {recipe ?
         <>
           <div>

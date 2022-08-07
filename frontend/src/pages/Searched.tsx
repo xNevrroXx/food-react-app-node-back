@@ -17,7 +17,12 @@ const Searched = () => {
   }, [param.search])
 
   return (
-    <Wrapper>
+    <Wrapper
+      animate={{opacity: 1}}
+      initial={{opacity: 0}}
+      exit={{opacity: 0}}
+      transition={{duration: 0.5}}
+    >
       <Grid>
         {recipes.map(({id, title, image}: any) => {
           return (

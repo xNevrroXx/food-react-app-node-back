@@ -1,9 +1,10 @@
 // styled components
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
+import {motion} from "framer-motion";
 
-const Wrapper = styled.div`
-  margin: 4rem 0rem;
+const Wrapper = styled(motion.div)`
+  margin: 4rem 0;
 `;
 
 const Card = styled(NavLink)`
@@ -11,10 +12,12 @@ const Card = styled(NavLink)`
   border-radius: 2rem;
   overflow: hidden;
   position: relative;
+  display: block;
   
   img {
     border-radius: 2rem;
     position: absolute;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -112,7 +115,7 @@ const Form = styled.form`
   }
 `;
 
-const Recipe = styled.div`
+const Recipe = styled(motion.div)`
   display: flex;
   justify-content: flex-start;
   align-content: center;
@@ -151,4 +154,20 @@ const Recipe = styled.div`
   }
 `;
 
-export {Wrapper, Card, Gradient, ListCategory, SLink, Grid, Form, Recipe};
+const Logo = styled(NavLink)`
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-family: "Lobster Two", cursive;
+`;
+const Nav = styled.div`
+  padding: 4rem 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  svg {
+    font-size: 2rem;
+  }
+`;
+
+export {Wrapper, Card, Gradient, ListCategory, SLink, Grid, Form, Recipe, Logo, Nav};

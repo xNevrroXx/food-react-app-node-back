@@ -1,4 +1,5 @@
-import { Route, Routes } from "react-router-dom";
+import {Route, Routes, useLocation} from "react-router-dom";
+import {AnimatePresence} from "framer-motion";
 
 //pages
 import Home from "./Home";
@@ -7,13 +8,17 @@ import Searched from "./Searched";
 import Recipe from "./Recipe";
 
 function Pages() {
+  const location = useLocation();
+
   return (
-    <Routes>
-      <Route path={"/recipes/:id"} element={<Recipe/>} />
-      <Route path={"/cuisine/:type"} element={<Cuisine/>} />
-      <Route path={"/searched/:search"} element={<Searched/>} />
-      <Route path={"/"} element={<Home/>} />
-    </Routes>
+    <AnimatePresence exitBeforeEnter>
+      <Routes location={location} key={location.pathname}>
+        <Route path={"/recipes/:id"} element={<Recipe/>} />
+        <Route path={"/cuisine/:type"} element={<Cuisine/>} />
+        <Route path={"/searched/:search"} element={<Searched/>} />
+        <Route path={"/"} element={<Home/>} />
+      </Routes>
+    </AnimatePresence>
   )
 }
 

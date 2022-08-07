@@ -12,7 +12,7 @@ const {getVeggie} = new FoodAPI();
 // main component
 const Veggie = () => {
   const [veggie, setVeggie] = useState<any>([]);
-
+  console.log(veggie)
   useEffectOnce(() => {
     getVeggie({number: 9})
         .then(data => setVeggie(data))
